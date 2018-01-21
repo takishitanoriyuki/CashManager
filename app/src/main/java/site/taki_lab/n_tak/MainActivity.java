@@ -1,6 +1,7 @@
 package site.taki_lab.n_tak;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 fileInputStream.read(readBytes);
                 String readString = new String(readBytes);
                 Count = Integer.parseInt(readString);
+                fileInputStream.close();
             } catch (FileNotFoundException e) {
             } catch (IOException e) {
             }
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 FileOutputStream fileOutputStream = openFileOutput(getString(R.string.filename), MODE_PRIVATE);
                 String writeString = "0";
                 fileOutputStream.write(writeString.getBytes());
+                fileOutputStream.close();
             } catch (FileNotFoundException e) {
             } catch (IOException e) {
             }
@@ -82,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, RecodeListActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -110,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
                             fileOutputStream.write(writeString.getBytes());
                             TextView tv = (TextView) findViewById(R.id.money);
                             tv.setText(String.valueOf(Count) + "円");
+                            fileOutputStream.close();
+
+                            CountingLog log = new CountingLog(MainActivity.this);
+                            log.WriteLog(value);
                         } catch (FileNotFoundException e) {
                         } catch (IOException e) {
                         }
@@ -129,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
                             fileOutputStream.write(writeString.getBytes());
                             TextView tv = (TextView) findViewById(R.id.money);
                             tv.setText(String.valueOf(Count) + "円");
+                            fileOutputStream.close();
+
+                            CountingLog log = new CountingLog(MainActivity.this);
+                            log.WriteLog(-1 * value);
                         } catch (FileNotFoundException e) {
                         } catch (IOException e) {
                         }
