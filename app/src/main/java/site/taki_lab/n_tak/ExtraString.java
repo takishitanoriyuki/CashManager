@@ -5,4 +5,5 @@ package site.taki_lab.n_tak;
  */
 
 public final class ExtraString {
+    public static final String EXTRA_FILENAME = "site.taki_lab.n_tak.EXTRA_FILENAME";
 }

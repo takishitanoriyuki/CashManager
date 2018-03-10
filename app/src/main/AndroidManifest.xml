@@ -22,7 +22,11 @@
         <activity
             android:name=".RecodeListActivity"
             android:label="@string/history"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DetailsActivity"
+            android:label="@string/details"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
